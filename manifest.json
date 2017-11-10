@@ -1,0 +1,38 @@
+{
+	"manifest_version": 2,
+	"name": "lina_dicto for webextension",
+	"version": "1.0",
+
+	"description": "word translate esperanto to japanese",
+	"homepage_url": "https://github.com/MichinariNukazawa/lina_dicto",
+	"author": "michinari.nukazawa@gmail.com",
+
+	"icons": {
+		"48": "icon/icon_48.png"
+	},
+
+  "permissions": [
+    "activeTab"
+  ],
+
+	"browser_action": {
+		"default_title": "lina_dicto for webextension",
+		"default_icon": "icon/icon_128.png"
+	},
+
+	"background": {
+		"scripts": ["background.js"],
+		"persistent": false
+	},
+
+	"content_scripts": [
+		{
+			"matches": ["*://*/*"],
+			"js": ["content_script.js"],
+			"run_at": "document_end",
+			"all_frames": true
+		}
+	]
+
+}
+
