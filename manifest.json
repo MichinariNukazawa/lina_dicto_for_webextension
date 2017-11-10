@@ -28,7 +28,7 @@
 	"content_scripts": [
 		{
 			"matches": ["*://*/*"],
-			"js": ["content_script.js"],
+			"js": ["detector.js", "hover.js", "content_script.js"],
 			"run_at": "document_end",
 			"all_frames": true
 		}

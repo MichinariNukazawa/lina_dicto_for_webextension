@@ -24,3 +24,10 @@
 
 })();
 
+let hover = new Hover();
+let detector = new Detector(hover.callback.bind(hover));
+
+window.addEventListener( 'load', function(e){
+	hover.append();
+}, false);
+
