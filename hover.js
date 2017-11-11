@@ -39,7 +39,12 @@ class Hover{
 			result_element.style["top"] = this.get_px_str(y + 30);
 			//console.log(word + " :" + x + "," + y);
 
-			result_element.textContent = word;
+			let item = dictionary_get_item_from_keyword(word);
+			if(item){
+				word += "/" + dictionary_get_explanation_from_item(item);
+			}
+
+			result_element.textContent = "`" + word + "`";
 		}
 	}
 };

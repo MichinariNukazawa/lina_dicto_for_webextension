@@ -1,23 +1,14 @@
 'use strict';
 
+// https://stackoverflow.com/a/30586239
+
 class Detector {
 	constructor(callback) {
 		this.callback = callback;
 	}
-};
 
-(function() {
-	// Return the word the cursor is over
-	window.addEventListener( 'load', function(e){
-		document.addEventListener('mousemove', function(e) {
-			let info = get_full_word_ex(e);
-			detector.callback(info.x, info.y, info.word);
-		}, false);
-	}, false);
-
-
-	function get_full_word_ex(e){
-		let word = getFullWord(e);
+	get_full_word_ex(e){
+		let word = this.getFullWord(e);
 		let info = {
 			"x" : e.clientX,
 			"y" : e.clientY,
@@ -30,7 +21,7 @@ class Detector {
 	// Helper functions
 
 	// Get the full word the cursor is over regardless of span breaks
-	function getFullWord(event) {
+	getFullWord(event) {
 		let i, begin, end, range, textNode, offset;
 
 		// Internet Explorer
@@ -39,7 +30,7 @@ class Detector {
 				range = document.body.createTextRange();
 				range.moveToPoint(event.clientX, event.clientY);
 				range.select();
-				range = getTextRangeBoundaryPosition(range, true);
+				range = this.getTextRangeBoundaryPosition(range, true);
 
 				textNode = range.node;
 				offset = range.offset;
@@ -78,20 +69,20 @@ class Detector {
 		}
 
 		// Ignore the cursor on spaces - these aren't words
-		if (isW(data[offset])) {
+		if (this.isW(data[offset])) {
 			return "";
 		}
 
 		// Scan behind the current character until whitespace is found, or beginning
 		i = begin = end = offset;
-		while (i > 0 && !isW(data[i - 1])) {
+		while (i > 0 && !this.isW(data[i - 1])) {
 			i--;
 		}
 		begin = i;
 
 		// Scan ahead of the current character until whitespace is found, or end
 		i = offset;
-		while (i < data.length - 1 && !isW(data[i + 1])) {
+		while (i < data.length - 1 && !this.isW(data[i + 1])) {
 			i++;
 		}
 		end = i;
@@ -100,25 +91,25 @@ class Detector {
 		let word = data.substring(begin, end + 1);
 
 		// Demo only
-		showBridge(null, null, null);
+		this.showBridge(null, null, null);
 
 		// If at a node boundary, cross over and see what 
 		// the next word is and check if this should be added to our temp word
 		if (end === data.length - 1 || begin === 0) {
 
-			let nextNode = getNextNode(textNode);
-			let prevNode = getPrevNode(textNode);
+			let nextNode = this.getNextNode(textNode);
+			let prevNode = this.getPrevNode(textNode);
 
 			// Get the next node text
 			if (end == data.length - 1 && nextNode) {
 				let nextText = nextNode.textContent;
 
 				// Demo only
-				showBridge(word, nextText, null);
+				this.showBridge(word, nextText, null);
 
 				// Add the letters from the next text block until a whitespace, or end
 				i = 0;
-				while (i < nextText.length && !isW(nextText[i])) {
+				while (i < nextText.length && !this.isW(nextText[i])) {
 					word += nextText[i++];
 				}
 
@@ -127,11 +118,11 @@ class Detector {
 				let prevText = prevNode.textContent;
 
 				// Demo only
-				showBridge(word, null, prevText);
+				this.showBridge(word, null, prevText);
 
 				// Add the letters from the next text block until a whitespace, or end
 				i = prevText.length - 1;
-				while (i >= 0 && !isW(prevText[i])) {
+				while (i >= 0 && !this.isW(prevText[i])) {
 					word = prevText[i--] + word;
 				}
 			}
@@ -140,17 +131,17 @@ class Detector {
 	}
 
 	// Whitespace checker
-	function isW(s) {
+	isW(s) {
 		return /[ \f\n\r\t\v\u00A0\u2028\u2029]/.test(s);
 	}
 
 	// Barrier nodes are BR, DIV, P, PRE, TD, TR, ... 
-	function isBarrierNode(node) {
+	isBarrierNode(node) {
 		return node ? /^(BR|DIV|P|PRE|TD|TR|TABLE)$/i.test(node.nodeName) : true;
 	}
 
 	// Try to find the next adjacent node
-	function getNextNode(node) {
+	getNextNode(node) {
 		let n = null;
 		// Does this node have a sibling?
 		if (node.nextSibling) {
@@ -160,11 +151,11 @@ class Detector {
 		} else if (node.parentNode && node.parentNode.nextSibling) {
 			n = node.parentNode.nextSibling;
 		}
-		return isBarrierNode(n) ? null : n;
+		return this.isBarrierNode(n) ? null : n;
 	}
 
 	// Try to find the prev adjacent node
-	function getPrevNode(node) {
+	getPrevNode(node) {
 		let n = null;
 
 		// Does this node have a sibling?
@@ -175,11 +166,11 @@ class Detector {
 		} else if (node.parentNode && node.parentNode.previousSibling) {
 			n = node.parentNode.previousSibling;
 		}
-		return isBarrierNode(n) ? null : n;
+		return this.isBarrierNode(n) ? null : n;
 	}
 
 	// REF: http://stackoverflow.com/questions/3127369/how-to-get-selected-textnode-in-contenteditable-div-in-ie
-	function getChildIndex(node) {
+	getChildIndex(node) {
 		let i = 0;
 		while( (node = node.previousSibling) ) {
 			i++;
@@ -189,7 +180,7 @@ class Detector {
 
 	// All this code just to make this work with IE, OTL
 	// REF: http://stackoverflow.com/questions/3127369/how-to-get-selected-textnode-in-contenteditable-div-in-ie
-	function getTextRangeBoundaryPosition(textRange, isStart) {
+	getTextRangeBoundaryPosition(textRange, isStart) {
 		let workingRange = textRange.duplicate();
 		workingRange.collapse(isStart);
 		let containerElement = workingRange.parentElement();
@@ -227,7 +218,7 @@ class Detector {
 			// We've hit the boundary exactly, so this must be an element
 			boundaryPosition = {
 				node: containerElement,
-				offset: getChildIndex(workingNode)
+				offset: this.getChildIndex(workingNode)
 			};
 		}
 
@@ -238,7 +229,7 @@ class Detector {
 	}
 
 	// DEMO-ONLY code - this shows how the word is recombined across boundaries
-	function showBridge(word, nextText, prevText) {
+	showBridge(word, nextText, prevText) {
 		if (nextText) {
 			console.log("`" + word + "` `" + nextText.substring(0, 20) + "`");
 		} else if (prevText) {
@@ -248,5 +239,5 @@ class Detector {
 		}
 	}
 
-})();
+};
 

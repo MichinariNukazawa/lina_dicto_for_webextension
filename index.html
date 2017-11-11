@@ -1,0 +1,159 @@
+<html>
+	<head>
+		<style type="text/css">
+.vim-indent-dummy{
+}
+			h1{
+				margin: .1em;
+			}
+			h2{
+				display: inline-block;
+				padding: .1em;
+				padding-right: 5em;
+				color: #EEEEEE;
+				background-color: #433f3e;
+				margin: .1em;
+			}
+			h3,h4,h5{
+				padding: .1em;
+				padding-left: .3em;
+				border-left: solid 6px #8ec4e8;
+				margin: .1em;
+				margin-top: .3em;
+			}
+			}
+			.kinovar {
+				color: red;
+				font-size: 20px;
+			}
+			.slavic {
+				color: blue;
+			}
+			.word {
+				color: blue;
+			}
+		</style>
+		<script src="detector.js"></script>
+		<script src="hover.js"></script>
+		<script src="lina_dicto/js/dictionary_loader.js"></script>
+		<script src="lina_dicto/js/dictionary.js"></script>
+		<script src="lina_dicto/js/esperanto.js"></script>
+		<script src="content_script.js"></script>
+	</head>
+
+	<body>
+		<h1>[lina_dicto for webextension test page]</h1>
+		<h2>simple tests</h2>
+		<h3>word</h2>
+		amrilato bona<br>
+
+		<h3>word with</h2>
+		bonan.  "bonan" bonan-<br>
+
+		<h3>two word</h2>
+		bonan matenon.<br>
+
+		<h3>^-sistemo, x-sistemo circumflex</h2>
+		voc^o vocxa voĉdoni<br>
+
+		<h3>two word</h2>
+		bonan matenon.
+
+		<h3>text ending</h2>
+		bonan. matenon
+
+		<h3>mis-spelling</h2>
+		amlirato<br>
+
+		<h3>long word ignore(over 20 length)</h3>
+		aaaaabbbbbcccccxxxxx<br>
+
+		<h3>no esperant word ignore</h3>
+		たいやき対たぬきそば<br>
+
+		<h3>mixed esperant word</h3>
+		たいやきkontraŭstarigiたぬきそば<br>
+
+		<br>
+		<h2>Lorem ipsum</h2>
+		<p>
+		Lorem ipsum dolor sit amet, vel at rationibus adipiscing, te minimum maluisset necessitatibus sit.
+		Ex eos tantas inimicus incorrupte, ei sea hinc timeam, oportere mnesarchum cum ad.
+		Per ne elit wisi efficiantur, eu vivendum qualisque sed.
+		Cum no hinc lobortis scripserit, sea ne alia nihil meliore.
+		</p>
+		<p>
+		Illum singulis mel in, vel augue laudem gubergren ei. Te nec iudico dissentiet, ei vix sapientem explicari imperdiet. Has et putant tractatos. His te harum appareat, latine adipisci senserit te has. Id case honestatis est, per dolores accusamus no.
+		</p>
+
+		<!--
+	  <h2>vikipedio:</h2>
+	  <iframe src="https://eo.wikipedia.org/wiki/Oktobrofesto" name="sample" width="90%" height="300">
+	  </iframe>
+		-->
+
+		<h2>detector test</h2>
+		<p>
+		<span class="kinovar">
+			<span id="selection_index3337" class="selection_index">
+
+			</span>
+			По f7-мъ часЁ твори1тъ сщ7eнникъ начaло съ кади1ломъ и3 со свэщeю, цrкимъ двeремъ tвeрзєннымъ, и3 поeтъ: Х
+		</span>
+		rт0съ воскRсе: <span class="kinovar">
+			со стіхи2. И# по стісёхъ pал0мъ: Б
+		</span>
+		лгcви2 душE моS гDа: <span class="kinovar">
+			И# є3ктеніA. Тaже каfjсма nбhчнаz.
+		</span>
+		</p>
+		<div class="slavic">
+			<input value="Works around other tags!">
+			<p>
+			<span id="selection_index3737" class="selection_index">
+
+			</span>
+			(л. рo7з њб.)</p>
+			<p>
+			<span class="kinovar">
+				<span id="selection_index3738" class="selection_index">
+
+				</span>
+				Во вт0рникъ вeчера
+			</span>
+			</p>
+			<p>
+			<span class="kinovar">
+				<span id="selection_index3739" class="selection_index">
+
+				</span>
+				tдaніе прaздника пaсхи.
+			</span>
+			</p>
+			<p>
+			<span class="kinovar">
+				<span id="selection_index3740" class="selection_index">
+
+				</span>
+				По f7-мъ часЁ твори1тъ сщ7eнникъ начaло съ кади1ломъ и3 со свэщeю, цrкимъ двeремъ tвeрзєннымъ, и3 поeтъ: Х
+			</span>
+			rт0съ воскRсе: <span class="kinovar">
+				со стіхи2. И# по стісёхъ pал0мъ: Б
+			</span>
+			лгcви2 душE моS гDа: <span class="kinovar">
+				И# є3ктеніA. Тaже каfjсма nбhчнаz.<input value="Works around inline tags too">
+
+			</span>
+			</p>
+			<p>
+			<span class="kinovar">
+				<span id="selection_index3741" class="selection_index">
+
+				</span>
+				На ГDи воззвaхъ: поeмъ стіхи6ры самоглaсны, слэпaгw, на ѕ7. Глaсъ в7:
+			</span>
+			</p>
+		</div>
+	</body>
+</html>
+
