@@ -228,9 +228,9 @@ class Detector {
 	// DEMO-ONLY code - this shows how the word is recombined across boundaries
 	showBridge(word, nextText, prevText) {
 		if (nextText) {
-			console.log("`" + word + "` `" + nextText.substring(0, 20) + "`");
+			// console.log("`" + word + "` `" + nextText.substring(0, 20) + "`");
 		} else if (prevText) {
-			console.log("`" + prevText.substring(prevText.length - 20, prevText.length) + "` `" + word + "`");
+			// console.log("`" + prevText.substring(prevText.length - 20, prevText.length) + "` `" + word + "`");
 		} else {
 			// console.log("");
 		}
