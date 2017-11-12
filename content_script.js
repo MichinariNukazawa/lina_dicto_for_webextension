@@ -28,7 +28,7 @@
 	});
 
 	let hover = new Hover();
-	let detector = new Detector(hover.callback.bind(hover));
+	let detector = new Detector();
 
 	window.addEventListener( 'load', function(e){
 		hover.append();
@@ -38,7 +38,7 @@
 	window.addEventListener( 'load', function(e){
 		document.addEventListener('mousemove', function(e) {
 			let info = detector.get_full_word_ex(e);
-			detector.callback(info.x, info.y, info.word);
+			hover.show(info.x, info.y, info.word);
 		}, false);
 	}, false);
 

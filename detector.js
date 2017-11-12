@@ -3,9 +3,6 @@
 // https://stackoverflow.com/a/30586239
 
 class Detector {
-	constructor(callback) {
-		this.callback = callback;
-	}
 
 	get_full_word_ex(e){
 		let word = this.getFullWord(e);

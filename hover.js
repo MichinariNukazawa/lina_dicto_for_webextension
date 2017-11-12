@@ -46,7 +46,7 @@ class Hover{
 		return '' + value + 'px';
 	}
 
-	callback(x, y, word){
+	show(x, y, word){
 		if (word == "") {
 			this.state.result_root_element.style["display"] = "none";
 			this.state.word_element.textContent = "";
