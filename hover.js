@@ -11,7 +11,9 @@ class Hover{
 			+ 'width:auto;'
 			+ 'position: fixed;'
 			+ 'background-color:white;'
-			+ 'border:2px solid black;'
+			+ 'border: 1.5px solid rgba(0, 170, 0, 1);'
+			+ 'border-radius: 3px;'
+			+ 'background: rgba(215, 255, 215, 1);'
 			+ 'padding:4px;';
 
 		let word_element = document.createElement('div');
@@ -57,11 +59,15 @@ class Hover{
 
 			let item = dictionary_get_item_from_keyword(word);
 			if(item){
+				this.state.result_root_element
+					.style["border-width"] = "2px";
 				this.state.explanation_element
 					.style["display"] = "block";
 				this.state.explanation_element
 					.textContent = dictionary_get_explanation_from_item(item);
 			}else{
+				this.state.result_root_element
+					.style["border-width"] = "1.5px";
 				this.state.explanation_element
 					.style["display"] = "none";
 			}
