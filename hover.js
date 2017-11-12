@@ -33,6 +33,7 @@ class Hover{
 			"result_root_element": result_root_element,
 			"word_element": word_element,
 			"explanation_element": explanation_element,
+			"prev_word": null,
 		};
 		this.state = state;
 	}
@@ -47,15 +48,24 @@ class Hover{
 	}
 
 	show(x, y, word){
+		// console.log(word + " :" + x + "," + y);
+
 		if (word == "") {
 			this.state.result_root_element.style["display"] = "none";
 			this.state.word_element.textContent = "";
 			this.state.explanation_element.textContent = "";
+
+			this.state.prev_word = word;
 		}else{
 			this.state.result_root_element.style["display"] = "inline-block";
 			this.state.result_root_element.style["left"] = this.get_px_str(x + 10);
 			this.state.result_root_element.style["top"] = this.get_px_str(y + 30);
 			//console.log(word + " :" + x + "," + y);
+
+			if(word === this.state.prev_word){
+				return;
+			}
+			this.state.prev_word = word;
 
 			let item = dictionary_get_item_from_keyword(word);
 			if(item){
