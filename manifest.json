@@ -8,7 +8,8 @@
 	"author": "michinari.nukazawa@gmail.com",
 
 	"icons": {
-		"48": "icon/icon_48.png"
+		"48": "icon/icon_48.png",
+		"96": "icon/icon_96.png"
 	},
 
   "permissions": [
