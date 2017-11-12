@@ -7,7 +7,7 @@
 		console.log(manifest.name + " : content : " + document.title);
 	}
 
-	init_dictionary();
+	init_edictionary();
 
 	let hover = new Hover();
 	let detector = new Detector();
