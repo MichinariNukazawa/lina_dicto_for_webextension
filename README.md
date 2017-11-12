@@ -17,7 +17,6 @@ FireFoxとChromeに対応しています。
 FireFoxアドオンおよびChromeエクステンションとして公開予定。  
 
 ## License
-Apache License?  
 Clause-2 BSD License  
 Exclude dictionary data.(辞書ファイルは辞書ファイル毎のライセンスに準じます)  
 
