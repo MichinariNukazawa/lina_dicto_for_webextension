@@ -18,7 +18,8 @@
 
 	"browser_action": {
 		"default_title": "lina_dicto for webextension",
-		"default_icon": "icon/icon_128.png"
+		"default_icon": "icon/icon_128.png",
+		"default_popup": "popup/popup_menu.html"
 	},
 
 	"background": {

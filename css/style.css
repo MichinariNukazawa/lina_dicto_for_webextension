@@ -1,0 +1,28 @@
+@charset "utf-8";
+
+html, body{
+	margin: 0;         /* 余白の削除 */
+	padding: 0;        /* 余白の削除 */
+
+	background: rgba(220, 255, 220, 1);
+}
+
+h1{
+	margin: .1em;
+}
+h2{
+	display: table;
+	padding: .1em;
+	padding-right: 5em;
+	color: #EEEEEE;
+	background-color: #433f3e;
+	margin: .1em;
+}
+h3,h4,h5{
+	padding: .1em;
+	padding-left: .3em;
+	border-left: solid 6px rgba(0, 170, 0, 1);
+	margin: .1em;
+	margin-top: .3em;
+}
+
