@@ -71,14 +71,25 @@ class Hover{
 			}
 			this.state.prev_word = word;
 
-			let item = dictionary_get_item_from_keyword(word);
+			let item = null;
+			let explanation_text = "";
+			let show_word = word;
+			if(20 < word.length){
+				show_word = word.substr(0, 10) + "~";
+			}else if(!esperanto_is_esperanto_string(word)){
+				explanation_text = word;
+			}else{
+				let k_word = esperanto_caret_sistemo_from_str(word);
+				item = dictionary_get_item_from_keyword(k_word);
+				explanation_text = dictionary_get_explanation_from_item(item);
+			}
 			if(item){
 				this.state.result_root_element
 					.style["border-width"] = "2px";
 				this.state.explanation_element
 					.style["display"] = "block";
 				this.state.explanation_element
-					.textContent = dictionary_get_explanation_from_item(item);
+					.textContent = explanation_text;
 			}else{
 				this.state.result_root_element
 					.style["border-width"] = "1.5px";
@@ -86,7 +97,7 @@ class Hover{
 					.style["display"] = "none";
 			}
 
-			this.state.word_element.textContent = "`" + word + "`";
+			this.state.word_element.textContent = "`" + show_word + "`";
 		}
 	}
 };
