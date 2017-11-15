@@ -34,8 +34,8 @@
 				"lina_dicto/js/dictionary_loader.js",
 				"lina_dicto/js/dictionary.js",
 				"lina_dicto/js/esperanto.js",
-				"detector.js",
-				"hover.js",
+				"js/detector.js",
+				"js/hover.js",
 				"content_script.js"
 			],
 			"run_at": "document_end",
