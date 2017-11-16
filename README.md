@@ -7,6 +7,8 @@ lina\_dicto for webextension は、ブラウザ上でEsperantoの単語の上に
 とりあえず作ってみた版。  
 FireFoxとChromeに対応しています。  
 
+拡張をインストールしなくても動作する[テストページ](http://michinarinukazawa.github.io/lina_dicto_for_webextension/index.html)で、翻訳表示を試すことができます。
+
 その他のバージョン：  
 [lina\_dicto (for Win/MacOSX/Linux)](https://github.com/MichinariNukazawa/lina_dicto)  
 [lina\_dicto for android](https://github.com/MichinariNukazawa/lina_dicto_for_android)  
