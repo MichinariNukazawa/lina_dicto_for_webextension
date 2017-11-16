@@ -4,7 +4,7 @@ lina\_dicto for webextension
 
 # About
 lina\_dicto for webextension は、ブラウザ上でEsperantoの単語の上にマウスオーバーすると、日本語翻訳をホバー表示(ツールチップ表示)するブラウザ拡張です。  
-とりあえず作ってみた版。
+とりあえず作ってみた版。  
 FireFoxとChromeに対応しています。  
 
 その他のバージョン：  
@@ -12,7 +12,8 @@ FireFoxとChromeに対応しています。
 [lina\_dicto for android](https://github.com/MichinariNukazawa/lina_dicto_for_android)  
 
 # Screenshot/Image
-![lina\_dicto](document/image/lina_dicto_0_1_3_windows.png)  
+<img src="document/image/20171117_hover.png" width="500">  
+<img src="document/image/20171117_popup_menu.png" width="500">  
 
 # Get lina\_dicto for webextension
 FireFoxアドオンおよびChromeエクステンションとして公開予定。  
