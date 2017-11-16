@@ -18,7 +18,8 @@ FireFoxとChromeに対応しています。
 <img src="document/image/20171117_popup_menu.png" width="500">  
 
 # Get lina\_dicto for webextension
-FireFoxアドオンおよびChromeエクステンションとして公開予定。  
+[Firefox Add-ons](https://addons.mozilla.org/ja/firefox/addon/lina_dicto_for_webextension/)  
+Chromeエクステンションとして公開予定。  
 
 ## License
 Clause-2 BSD License  
