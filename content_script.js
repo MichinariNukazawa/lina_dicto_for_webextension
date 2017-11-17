@@ -21,9 +21,16 @@ browser.runtime.onMessage.addListener(request => {
 		if(! dictionary.is_init()){
 			dictionary.init_edictionary();
 		}
+
+		//! hover要素がまだ無ければ追加(アドオン読み込み直後くらいしか呼ばれないはず)
+		if(! hover.is_appended()){
+			hover.append();
+		}
+
 		document.addEventListener('mousemove', callback);
 	}else{
 		document.removeEventListener('mousemove', callback);
+
 		hover.hidden();
 	}
 

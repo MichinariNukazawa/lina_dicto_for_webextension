@@ -2,6 +2,8 @@
 
 class Hover{
 	constructor(){
+		this.is_appended_flag = false;
+
 		let result_root_element = document.createElement('div');
 		result_root_element.style.cssText =
 			''
@@ -38,9 +40,14 @@ class Hover{
 		this.state = state;
 	}
 
+	is_appended(){
+		return this.is_appended_flag;
+	}
+
 	append(){
 		//console.log("");
 		document.body.appendChild(this.state.result_root_element);
+		this.is_appended_flag = true;
 	}
 
 	hidden(){
