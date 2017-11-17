@@ -1,9 +1,8 @@
 'use strict';
 
-init_edictionary();
-
 let hover = new Hover();
 let detector = new Detector();
+let dictionary = new Dictionary();
 
 function callback(e){
 	let info = detector.get_full_word_ex(e);
@@ -12,6 +11,7 @@ function callback(e){
 
 window.addEventListener( 'load', function(e){
 	hover.append();
+	dictionary.init_edictionary();
 });
 
 

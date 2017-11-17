@@ -80,8 +80,8 @@ class Hover{
 				explanation_text = word;
 			}else{
 				let k_word = esperanto_caret_sistemo_from_str(word);
-				item = dictionary_get_item_from_keyword(k_word);
-				explanation_text = dictionary_get_explanation_from_item(item);
+				item = dictionary.get_item_from_keyword(k_word);
+				explanation_text = dictionary.get_explanation_from_item(item);
 			}
 			if(item){
 				this.state.result_root_element
