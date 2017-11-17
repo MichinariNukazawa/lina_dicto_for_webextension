@@ -11,7 +11,6 @@ function callback(e){
 
 window.addEventListener( 'load', function(e){
 	hover.append();
-	dictionary.init_edictionary();
 });
 
 
@@ -19,6 +18,9 @@ browser.runtime.onMessage.addListener(request => {
 	console.debug(request.is_enabled);
 
 	if(request.is_enabled){
+		if(! dictionary.is_init()){
+			dictionary.init_edictionary();
+		}
 		document.addEventListener('mousemove', callback);
 	}else{
 		document.removeEventListener('mousemove', callback);
