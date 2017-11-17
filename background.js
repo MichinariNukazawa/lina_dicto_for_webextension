@@ -24,8 +24,8 @@ function sendEnabled(is_enabled_){
 					tab.id,
 					{is_enabled: is_enabled_}
 					).then(response => {
-				console.log("Message from the content script:");
-				console.log(response.response);
+				console.debug("Message from the content script:");
+				console.debug(response.response);
 			}).catch(onError);
 		}
 	}
@@ -50,7 +50,7 @@ window.addEventListener( 'load', function(e){
 });
 
 function handleActivated(activeInfo) {
-	console.log("Tab Activated: " + activeInfo.tabId);
+	console.debug("Tab Activated: " + activeInfo.tabId);
 
 	if(! activeInfo.tabId in is_enableds){
 		is_enableds[activeInfo.tabId] = false;
@@ -64,7 +64,7 @@ function handleActivated(activeInfo) {
 browser.tabs.onActivated.addListener(handleActivated);
 
 function handleUpdated(tabId, changeInfo, tabInfo) {
-	console.log("Tab Updated: " + tabId);
+	console.debug("Tab Updated: " + tabId);
 
 	sendEnabled(is_enableds[tabId]);
 }
@@ -72,7 +72,7 @@ function handleUpdated(tabId, changeInfo, tabInfo) {
 browser.tabs.onUpdated.addListener(handleUpdated);
 
 function handleRemoved(tabId, removeInfo) {
-	console.log("Tab Removed: " + tabId);
+	console.debug("Tab Removed: " + tabId);
 
 	delete is_enableds[tabId];
 }

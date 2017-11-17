@@ -16,7 +16,8 @@ window.addEventListener( 'load', function(e){
 
 
 browser.runtime.onMessage.addListener(request => {
-	console.log("Message from the background script:" + request.is_enabled);
+	console.debug(request.is_enabled);
+
 	if(request.is_enabled){
 		document.addEventListener('mousemove', callback);
 	}else{
