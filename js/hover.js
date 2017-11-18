@@ -45,7 +45,7 @@ class Hover{
 	}
 
 	append(){
-		//console.log("");
+		//console.debug("");
 		document.body.appendChild(this.state.result_root_element);
 		this.is_appended_flag = true;
 	}
@@ -63,7 +63,7 @@ class Hover{
 	}
 
 	show(x, y, word){
-		// console.log(word + " :" + x + "," + y);
+		// console.debug(word + " :" + x + "," + y);
 
 		if (word == "") {
 			this.hidden();
@@ -71,7 +71,7 @@ class Hover{
 			this.state.result_root_element.style["display"] = "inline-block";
 			this.state.result_root_element.style["left"] = this.get_px_str(x + 10);
 			this.state.result_root_element.style["top"] = this.get_px_str(y + 30);
-			//console.log(word + " :" + x + "," + y);
+			//console.debug(word + " :" + x + "," + y);
 
 			if(word === this.state.prev_word){
 				return;

@@ -14,7 +14,7 @@ function showAmrilatoPairBirthdayMessage(){
 
 	let message_area_element = document.getElementById('message_area');
 	if(message){
-		console.log(message);
+		console.debug(message);
 		message = '<span>メッセージ:' + message + '</span><hr>';
 		message_area_element.style.cssText =
 			''
@@ -37,7 +37,7 @@ window.addEventListener( 'load', function(e){
 	checkbox_element.checked = page.get_is_enabled_current_tab();
 
 	checkbox_element.addEventListener('change', function(e) {
-		console.log("change");
+		console.debug("change");
 
 		page.set_is_enabled_current_tab(checkbox_element.checked);
 	});

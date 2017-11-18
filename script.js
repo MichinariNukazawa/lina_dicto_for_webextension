@@ -4,7 +4,7 @@
 
 	if(typeof browser !== 'undefined'){
 		let manifest = browser.runtime.getManifest();
-		console.log(manifest.name + " : content : " + document.title);
+		console.debug(manifest.name + " : content : " + document.title);
 	}
 
 	init_edictionary();
