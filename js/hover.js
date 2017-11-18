@@ -2,6 +2,8 @@
 
 class Hover{
 	constructor(){
+		this.is_appended_flag = false;
+
 		let result_root_element = document.createElement('div');
 		result_root_element.style.cssText =
 			''
@@ -38,9 +40,14 @@ class Hover{
 		this.state = state;
 	}
 
+	is_appended(){
+		return this.is_appended_flag;
+	}
+
 	append(){
-		//console.log("");
+		//console.debug("");
 		document.body.appendChild(this.state.result_root_element);
+		this.is_appended_flag = true;
 	}
 
 	hidden(){
@@ -56,7 +63,7 @@ class Hover{
 	}
 
 	show(x, y, word){
-		// console.log(word + " :" + x + "," + y);
+		// console.debug(word + " :" + x + "," + y);
 
 		if (word == "") {
 			this.hidden();
@@ -64,7 +71,7 @@ class Hover{
 			this.state.result_root_element.style["display"] = "inline-block";
 			this.state.result_root_element.style["left"] = this.get_px_str(x + 10);
 			this.state.result_root_element.style["top"] = this.get_px_str(y + 30);
-			//console.log(word + " :" + x + "," + y);
+			//console.debug(word + " :" + x + "," + y);
 
 			if(word === this.state.prev_word){
 				return;
@@ -80,8 +87,8 @@ class Hover{
 				explanation_text = word;
 			}else{
 				let k_word = esperanto_caret_sistemo_from_str(word);
-				item = dictionary_get_item_from_keyword(k_word);
-				explanation_text = dictionary_get_explanation_from_item(item);
+				item = dictionary.get_item_from_keyword(k_word);
+				explanation_text = dictionary.get_explanation_from_item(item);
 			}
 			if(item){
 				this.state.result_root_element
