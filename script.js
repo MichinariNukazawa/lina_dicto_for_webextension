@@ -1,5 +1,7 @@
 'use strict';
 
+let dictionary = new Dictionary();
+
 (function(){
 
 	if(typeof browser !== 'undefined'){
@@ -7,7 +9,7 @@
 		console.debug(manifest.name + " : content : " + document.title);
 	}
 
-	init_edictionary();
+	dictionary.init_edictionary();
 
 	let hover = new Hover();
 	let detector = new Detector();
