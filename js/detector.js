@@ -129,7 +129,7 @@ class Detector {
 
 	// Whitespace checker
 	isW(s) {
-		return /[ \f\n\r\t\v\u00A0\u2028\u2029]/.test(s);
+		return /[ \f\n\r\t\v\u00A0\u2028\u2029\u3000\.,]/.test(s);
 	}
 
 	// Barrier nodes are BR, DIV, P, PRE, TD, TR, ... 
