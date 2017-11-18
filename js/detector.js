@@ -3,6 +3,9 @@
 // https://stackoverflow.com/a/30586239
 
 class Detector {
+	constructor(){
+		this.func_is_invalid_character = null;
+	}
 
 	get_full_word_ex(e){
 		let word = this.getFullWord(e);
@@ -13,6 +16,10 @@ class Detector {
 		};
 
 		return info;
+	}
+
+	set_func_is_invalid_character_check(func_is_invalid_character){
+		this.func_is_invalid_character = func_is_invalid_character;
 	}
 
 	// Helper functions
@@ -66,20 +73,20 @@ class Detector {
 		}
 
 		// Ignore the cursor on spaces - these aren't words
-		if (this.isW(data[offset])) {
+		if (this.isInvalidCharacter(data[offset])) {
 			return "";
 		}
 
 		// Scan behind the current character until whitespace is found, or beginning
 		i = begin = end = offset;
-		while (i > 0 && !this.isW(data[i - 1])) {
+		while (i > 0 && !this.isInvalidCharacter(data[i - 1])) {
 			i--;
 		}
 		begin = i;
 
 		// Scan ahead of the current character until whitespace is found, or end
 		i = offset;
-		while (i < data.length - 1 && !this.isW(data[i + 1])) {
+		while (i < data.length - 1 && !this.isInvalidCharacter(data[i + 1])) {
 			i++;
 		}
 		end = i;
@@ -106,7 +113,7 @@ class Detector {
 
 				// Add the letters from the next text block until a whitespace, or end
 				i = 0;
-				while (i < nextText.length && !this.isW(nextText[i])) {
+				while (i < nextText.length && !this.isInvalidCharacter(nextText[i])) {
 					word += nextText[i++];
 				}
 
@@ -119,7 +126,7 @@ class Detector {
 
 				// Add the letters from the next text block until a whitespace, or end
 				i = prevText.length - 1;
-				while (i >= 0 && !this.isW(prevText[i])) {
+				while (i >= 0 && !this.isInvalidCharacter(prevText[i])) {
 					word = prevText[i--] + word;
 				}
 			}
@@ -127,9 +134,15 @@ class Detector {
 		return word;
 	}
 
-	// Whitespace checker
-	isW(s) {
-		return /[ \f\n\r\t\v\u00A0\u2028\u2029\u3000\.,]/.test(s);
+	// invalid character checker
+	isInvalidCharacter(s) {
+		if(/[ \f\n\r\t\v\u00A0\u2028\u2029\u3000\.,]/.test(s)){
+			return true;
+		}
+		if(null != this.func_is_invalid_character){
+			return this.func_is_invalid_character(s);
+		}
+		return false;
 	}
 
 	// Barrier nodes are BR, DIV, P, PRE, TD, TR, ... 

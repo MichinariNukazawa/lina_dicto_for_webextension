@@ -14,6 +14,10 @@ let dictionary = new Dictionary();
 	let hover = new Hover();
 	let detector = new Detector();
 
+	detector.set_func_is_invalid_character_check(function (c){
+		return !esperanto_is_esperanto_string(c);
+	});
+
 	window.addEventListener( 'load', function(e){
 		hover.append();
 	}, false);

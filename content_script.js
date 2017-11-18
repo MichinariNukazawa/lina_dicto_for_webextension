@@ -11,6 +11,10 @@ function callback(e){
 
 window.addEventListener( 'load', function(e){
 	hover.append();
+	detector.set_func_is_invalid_character_check(function (c){
+		return !esperanto_is_esperanto_string(c);
+	});
+
 });
 
 
