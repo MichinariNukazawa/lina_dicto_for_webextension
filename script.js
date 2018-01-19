@@ -1,7 +1,5 @@
 'use strict';
 
-let dictionary = new Dictionary();
-
 (function(){
 
 	if(typeof browser !== 'undefined'){
@@ -9,13 +7,11 @@ let dictionary = new Dictionary();
 		console.debug(manifest.name + " : content : " + document.title);
 	}
 
-	dictionary.init_edictionary();
-
 	let hover = new Hover();
 	let detector = new Detector();
 
 	detector.set_func_is_invalid_character_check(function (c){
-		return !esperanto_is_esperanto_string(c);
+		return !Esperanto.is_esperanto_string(c);
 	});
 
 	window.addEventListener( 'load', function(e){

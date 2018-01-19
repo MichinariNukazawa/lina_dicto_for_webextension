@@ -83,10 +83,10 @@ class Hover{
 			let show_word = word;
 			if(20 < word.length){
 				show_word = word.substr(0, 10) + "~";
-			}else if(!esperanto_is_esperanto_string(word)){
+			}else if(! Esperanto.is_esperanto_string(word)){
 				explanation_text = word;
 			}else{
-				let k_word = esperanto_caret_sistemo_from_str(word);
+				let k_word = Esperanto.caret_sistemo_from_str(word);
 				item = dictionary.get_item_from_keyword(k_word);
 				explanation_text = dictionary.get_explanation_from_item(item);
 			}
