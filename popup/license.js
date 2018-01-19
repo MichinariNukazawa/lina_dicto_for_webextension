@@ -7,6 +7,10 @@ window.addEventListener( 'load', function(e){
 
 	license_text_element.textContent
 		= EsperantoLanguage_.command(":legumin")
+		+ "\n"
+		+ "\n+---------------------------------------------------------------------+"
+		+ "\n+---------------------------------------------------------------------+"
+		+ "\n\n"
 		+ EsperantoLanguage_.command(":gvidilo");
 
 }, false);
