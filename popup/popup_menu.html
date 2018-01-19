@@ -8,26 +8,37 @@
 	<body>
 		<h2><img src="../icon/icon_48.png" height="24" width="24">lina_dicto for webextension</h2>
 		<h3>設定</h3>
-		<label><input type="checkbox" id="ld_is_enabled" style="transform: scale(1.5);">有効化</label>
+		<label><input type="checkbox" id="ld_is_enabled">有効化</label>
+		<label><input type="checkbox" id="ld_is_license_area">ライセンス</label>
 		<br>
 		<hr>
 
-		<h3>バグ報告・要望</h3>
-		<a href="https://twitter.com/MNukazawa">twitter(@MNukazawa)</a>
-		<br>
-		<a href="mailto:michinari.nukazawa@gmail.com">mail(michinari.nukazawa@gmail.com)</a>
-		<br>
-		<hr>
+		<div id="link_area">
+			<h3>バグ報告・要望</h3>
+			<a href="https://twitter.com/MNukazawa">twitter(@MNukazawa)</a>
+			<br>
+			<a href="mailto:michinari.nukazawa@gmail.com">mail(michinari.nukazawa@gmail.com)</a>
+			<br>
+			<hr>
 
-		<h3>寄付</h3>
-		<a href="http://amzn.asia/gxaSPhE">寄付(amazon)</a>
-		<br>
-		<hr>
+			<h3>寄付</h3>
+			<a href="http://amzn.asia/gxaSPhE">寄付(amazon)</a>
+			<br>
+			<hr>
+		</div>
 
+		<div id="license_area">
+			<h3>ライセンス</h3>
+			<textarea id="license_text" rows="20" cols="100%"></textarea>
+		</div>
+
+		<hr>
 		<div id='message_area'>
 		</div>
 
 		<script src="popup_menu.js"></script>
+		<script src="license.js"></script>
+		<script src="esperanto_language.js"></script>
 	</body>
 
 </html>

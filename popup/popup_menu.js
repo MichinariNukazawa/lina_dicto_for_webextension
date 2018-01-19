@@ -42,5 +42,15 @@ window.addEventListener( 'load', function(e){
 		page.set_is_enabled_current_tab(checkbox_element.checked);
 	});
 
+	let license_area_checkbox_element = document.getElementById('ld_is_license_area');
+	let license_area_element = document.getElementById('license_area');
+	license_area_checkbox_element.addEventListener('change', function(e) {
+		console.debug("license_area_change" + license_area_checkbox_element.checked);
+
+		license_area_element.style.display
+			= (license_area_checkbox_element.checked)? "block":"none";
+	});
+
+
 }, false);
 
