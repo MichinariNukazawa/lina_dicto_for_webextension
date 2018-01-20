@@ -33,7 +33,10 @@ function send_message_to_tab_is_enabled(tab_id, is_enabled_){
 	browser.tabs.sendMessage(
 			tab_id,
 			{is_enabled: is_enabled_}
-			).catch(onError);
+			).then(response => {
+				console.log("Message from the content script:");
+				console.log(response.response);
+			}).catch(onError);
 }
 
 function setIcon(is){
