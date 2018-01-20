@@ -45,10 +45,10 @@ window.addEventListener( 'load', function(e){
 	let license_area_checkbox_element = document.getElementById('ld_is_license_area');
 	let license_area_element = document.getElementById('license_area');
 	license_area_checkbox_element.addEventListener('change', function(e) {
-		console.debug("license_area_change" + license_area_checkbox_element.checked);
+		let checked = (license_area_checkbox_element.checked)? "block":"none";
+		console.debug("license_area_change:" + checked);
 
-		license_area_element.style.display
-			= (license_area_checkbox_element.checked)? "block":"none";
+		license_area_element.style.display = checked;
 	});
 
 
