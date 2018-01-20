@@ -22,6 +22,8 @@ rm -rf ${PACKAGE_DIR}
 mkdir -p ${PACKAGE_DIR}
 
 cp ${ROOT_DIR}/manifest.json ${PACKAGE_DIR}/
+mkdir -p ${PACKAGE_DIR}/js
+cp ${ROOT_DIR}/js/browser-polyfill.js ${PACKAGE_DIR}/js
 cp ${ROOT_DIR}/content_script.js ${PACKAGE_DIR}/
 cp ${ROOT_DIR}/background.js ${PACKAGE_DIR}/
 cp -r ${ROOT_DIR}/js ${PACKAGE_DIR}/

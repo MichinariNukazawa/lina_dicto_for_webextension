@@ -23,7 +23,10 @@
 	},
 
 	"background": {
-		"scripts": ["background.js"],
+		"scripts": [
+			"js/browser-polyfill.js",
+			"background.js"
+		],
 		"persistent": false
 	},
 
@@ -31,6 +34,7 @@
 		{
 			"matches": ["*://*/*"],
 			"js": [
+				"js/browser-polyfill.js",
 				"lina_dicto/js/dictionary_loader.js",
 				"lina_dicto/js/dictionary.js",
 				"lina_dicto/js/esperanto.js",

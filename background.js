@@ -25,6 +25,7 @@ function set_is_enabled_current_tab(is){
 }
 
 function onError(error) {
+	// console.error(`Error: ${error}`);
 	console.error(error);
 }
 

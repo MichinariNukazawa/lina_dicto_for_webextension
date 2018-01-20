@@ -57,5 +57,7 @@ lina_dicto-*/
 release/
 lina_dicto/
 
+webextension-polyfill/
+
 *.zip
 
