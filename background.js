@@ -24,11 +24,11 @@ function set_is_enabled_current_tab(is){
 
 }
 
-function send_message_to_tab_is_enabled(tab_id, is_enabled_){
+function onError(error) {
+	console.error(error);
+}
 
-	function onError(error) {
-		console.error(`${tab_id} : ${error}`);
-	}
+function send_message_to_tab_is_enabled(tab_id, is_enabled_){
 
 	browser.tabs.sendMessage(
 			tab_id,
