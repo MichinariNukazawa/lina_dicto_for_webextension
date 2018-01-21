@@ -12,6 +12,8 @@ copy:
 	cp -r ../lina_dicto/lina_dicto/js/esperanto.js lina_dicto/js/
 
 package:
+	make clean
+	make copy
 	bash ./package.sh
 
 clean:
