@@ -15,7 +15,7 @@ SOURCE_DIR=${ROOT_DIR}
 PACKAGE_DIR=${ROOT_DIR}/tmp
 RELEASE_DIR=${ROOT_DIR}
 
-PACKAGE_NAME="lina_dicto_for_webextension"
+PACKAGE_NAME=$1
 
 ## packaging
 rm -rf ${PACKAGE_DIR}

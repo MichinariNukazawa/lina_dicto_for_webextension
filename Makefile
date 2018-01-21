@@ -14,7 +14,7 @@ copy:
 package:
 	make clean
 	make copy
-	bash ./package.sh
+	bash ./package.sh "lina_dicto_for_webextension"
 
 clean:
 	rm -rf lina_dicto/js
