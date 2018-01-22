@@ -25,6 +25,7 @@ browser.runtime.onMessage.addListener(request => {
 		if(! dictionary.is_init()){
 			const dictionary_data = dictionary_loader();
 			dictionary.init_edictionary(dictionary_data);
+			dictionary.init_hash_of_esperanto();
 		}
 
 		//! hover要素がまだ無ければ追加(アドオン読み込み直後くらいしか呼ばれないはず)

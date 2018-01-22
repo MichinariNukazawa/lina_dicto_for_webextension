@@ -21,7 +21,7 @@ class Hover{
 		let word_element = document.createElement('div');
 		word_element.style.cssText =
 			''
-			+ 'font-size:40%;'
+			+ 'font-size:60%;'
 			+ "font-family: Consolas, 'Courier New', Courier, Monaco, monospace;";
 		let explanation_element = document.createElement('div');
 		explanation_element.style.cssText =
@@ -62,10 +62,26 @@ class Hover{
 		return '' + value + 'px';
 	}
 
+	/** @brief スペル修正候補を返す */
+	get_candidate_word_from_keyword(keyword)
+	{
+		const candidates = Esperanto.get_candidates(keyword);
+		for(const candidate of candidates){
+			let index = dictionary.get_index_from_incremental_keyword(candidate);
+			let item = dictionary.get_item_from_index(index);
+			if(item){
+				return item;
+			}
+		}
+
+		return null;
+	}
+
 	get_show_info_from_keyword(keyword){
 		let show_info = {
 			'show_keyword':keyword,
-			'explanation_text':''
+			'explanation_text':'',
+			'candidate_word':''
 		};
 
 		if(20 < keyword.length){
@@ -75,6 +91,12 @@ class Hover{
 		}else{
 			let k_word = Esperanto.caret_sistemo_from_str(keyword);
 			let item = dictionary.get_item_from_keyword(k_word);
+			if(null === item){
+				item = this.get_candidate_word_from_keyword(k_word);
+				if(null !== item){
+					show_info.candidate_word = dictionary.get_show_word_from_item(item);
+				}
+			}
 			show_info.explanation_text = dictionary.get_explanation_from_item(item);
 		}
 
@@ -101,7 +123,7 @@ class Hover{
 
 			if(0 !== show_info.explanation_text.length){
 				this.state.result_root_element
-					.style["border-width"] = "2px";
+					.style["border-width"] = "3px";
 				this.state.explanation_element
 					.style["display"] = "block";
 				this.state.explanation_element
@@ -113,7 +135,16 @@ class Hover{
 					.style["display"] = "none";
 			}
 
-			this.state.word_element.textContent = "`" + show_info.show_word + "`";
+			let show_word = '`' + show_info.show_keyword + '`';
+			if(0 === show_info.candidate_word.length){
+				this.state.result_root_element
+					.style["border-color"] = 'rgba(0, 170, 0, 1)';
+			}else{
+				this.state.result_root_element
+					.style["border-color"] = 'rgba(80, 240, 10, 1)';
+				show_word += ' -> `' + show_info.candidate_word + '`';
+			}
+			this.state.word_element.textContent = show_word;
 		}
 	}
 };
