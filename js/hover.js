@@ -62,6 +62,25 @@ class Hover{
 		return '' + value + 'px';
 	}
 
+	get_show_info_from_keyword(keyword){
+		let show_info = {
+			'show_keyword':keyword,
+			'explanation_text':''
+		};
+
+		if(20 < keyword.length){
+			show_info.show_word = keyword.substr(0, 10) + "~";
+		}else if(! Esperanto.is_esperanto_string(keyword)){
+			show_info.explanation_text = keyword;
+		}else{
+			let k_word = Esperanto.caret_sistemo_from_str(keyword);
+			let item = dictionary.get_item_from_keyword(k_word);
+			show_info.explanation_text = dictionary.get_explanation_from_item(item);
+		}
+
+		return show_info;
+	}
+
 	show(x, y, word){
 		// console.debug(word + " :" + x + "," + y);
 
@@ -78,25 +97,15 @@ class Hover{
 			}
 			this.state.prev_word = word;
 
-			let item = null;
-			let explanation_text = "";
-			let show_word = word;
-			if(20 < word.length){
-				show_word = word.substr(0, 10) + "~";
-			}else if(! Esperanto.is_esperanto_string(word)){
-				explanation_text = word;
-			}else{
-				let k_word = Esperanto.caret_sistemo_from_str(word);
-				item = dictionary.get_item_from_keyword(k_word);
-				explanation_text = dictionary.get_explanation_from_item(item);
-			}
-			if(item){
+			let show_info = this.get_show_info_from_keyword(word);
+
+			if(0 !== show_info.explanation_text.length){
 				this.state.result_root_element
 					.style["border-width"] = "2px";
 				this.state.explanation_element
 					.style["display"] = "block";
 				this.state.explanation_element
-					.textContent = explanation_text;
+					.textContent = show_info.explanation_text;
 			}else{
 				this.state.result_root_element
 					.style["border-width"] = "1.5px";
@@ -104,7 +113,7 @@ class Hover{
 					.style["display"] = "none";
 			}
 
-			this.state.word_element.textContent = "`" + show_word + "`";
+			this.state.word_element.textContent = "`" + show_info.show_word + "`";
 		}
 	}
 };
