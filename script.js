@@ -1,5 +1,7 @@
 'use strict';
 
+let dictionary = new Dictionary();
+
 (function(){
 
 	if(typeof browser !== 'undefined'){
@@ -7,7 +9,11 @@
 		console.debug(manifest.name + " : content : " + document.title);
 	}
 
-	let hover = new Hover();
+	const dictionary_data = dictionary_loader();
+	dictionary.init_edictionary(dictionary_data);
+	dictionary.init_hash_of_esperanto();
+
+	let hover = new Hover(HoverProperty);
 	let detector = new Detector();
 
 	detector.set_func_is_invalid_character_check(function (c){

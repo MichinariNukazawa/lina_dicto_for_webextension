@@ -1,7 +1,8 @@
 'use strict';
 
 class Hover{
-	constructor(){
+	constructor(hover_property_arg){
+		this.HoverProperty = hover_property_arg;
 		this.is_appended_flag = false;
 
 		let result_root_element = document.createElement('div');
@@ -13,9 +14,9 @@ class Hover{
 			+ 'width:auto;'
 			+ 'position: fixed;'
 			+ 'background-color:white;'
-			+ 'border: 1.5px solid rgba(0, 170, 0, 1);'
+			+ 'border: 1.5px solid ' + this.HoverProperty.getRootBorderMatchedColor() + ';'
 			+ 'border-radius: 3px;'
-			+ 'background: rgba(215, 255, 215, 1);'
+			+ 'background: ' + this.HoverProperty.getRootBackgroundColor() + ';'
 			+ 'padding:4px;';
 
 		let word_element = document.createElement('div');
@@ -138,10 +139,10 @@ class Hover{
 			let show_word = '`' + show_info.show_keyword + '`';
 			if(0 === show_info.candidate_word.length){
 				this.state.result_root_element
-					.style["border-color"] = 'rgba(0, 170, 0, 1)';
+					.style["border-color"] = this.HoverProperty.getRootBorderMatchedColor();
 			}else{
 				this.state.result_root_element
-					.style["border-color"] = 'rgba(80, 240, 10, 1)';
+					.style["border-color"] = this.HoverProperty.getRootBorderCandidateColor();
 				show_word += ' -> `' + show_info.candidate_word + '`';
 			}
 			this.state.word_element.textContent = show_word;

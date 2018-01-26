@@ -39,6 +39,7 @@
 				"lina_dicto/js/dictionary.js",
 				"lina_dicto/js/esperanto.js",
 				"js/detector.js",
+				"js/hover_property.js",
 				"js/hover.js",
 				"content_script.js"
 			],

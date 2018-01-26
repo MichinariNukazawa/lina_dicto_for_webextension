@@ -1,6 +1,6 @@
 'use strict';
 
-let hover = new Hover();
+let hover = new Hover(HoverProperty);
 let detector = new Detector();
 let dictionary = new Dictionary();
 
