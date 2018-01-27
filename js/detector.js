@@ -8,14 +8,33 @@ class Detector {
 	}
 
 	get_full_word_ex(e){
-		let word = this.getFullWord(e);
+		let words = this.getFullWord(e);
+		words.next_word = this.convert_next_word(words.next_word);
 		let info = {
 			"x" : e.clientX,
 			"y" : e.clientY,
-			"word" : word,
+			"word" : words.word,
+			"next_word" : words.next_word,
 		};
 
 		return info;
+	}
+
+	convert_next_word(src){
+		let dst = '';
+		let i = 0;
+		while(i < src.length && /[\s\r\n]/.test(src[i])){
+			i++;
+		}
+		let head = i;
+		while(i < src.length && !this.isInvalidCharacter(src[i])){
+			i++;
+		}
+		let foot = i;
+		dst = src.substring(head, foot);
+		// console.log(`${head},${foot},${src.length}>>${src}>>${dst}>>`);
+
+		return dst;
 	}
 
 	set_func_is_invalid_character_check(func_is_invalid_character){
@@ -27,6 +46,10 @@ class Detector {
 	// Get the full word the cursor is over regardless of span breaks
 	getFullWord(event) {
 		let i, begin, end, range, textNode, offset;
+		let words = {
+			'word': '',
+			'next_word': '',
+		};
 
 		// Internet Explorer
 		if (document.body.createTextRange) {
@@ -39,7 +62,7 @@ class Detector {
 				textNode = range.node;
 				offset = range.offset;
 			} catch(e) {
-				return ""; // Sigh, IE
+				return words; // Sigh, IE
 			}
 		}
 
@@ -60,7 +83,7 @@ class Detector {
 
 		// Only act on text nodes
 		if (!textNode || textNode.nodeType !== Node.TEXT_NODE) {
-			return "";
+			return words;
 		}
 
 		let data = textNode.textContent;
@@ -74,7 +97,7 @@ class Detector {
 
 		// Ignore the cursor on spaces - these aren't words
 		if (this.isInvalidCharacter(data[offset])) {
-			return "";
+			return words;
 		}
 
 		// Scan behind the current character until whitespace is found, or beginning
@@ -93,6 +116,14 @@ class Detector {
 
 		// This is our temporary word
 		let word = data.substring(begin, end + 1);
+		words.word = word;
+
+		// If word end is not data end, get next word
+		if (end !== data.length - 1){
+			let next_word = data.substring(end + 2);
+			words.next_word = next_word;
+			// console.log(`<<${words.next_word}>>`);
+		}
 
 		// Demo only
 		this.showBridge(null, null, null);
@@ -117,6 +148,10 @@ class Detector {
 					word += nextText[i++];
 				}
 
+				let next_word = nextText.substring(i + 1);
+				words.next_word = next_word;
+				// console.log(`:${words.next_word}:`);
+
 			} else if (begin === 0 && prevNode) {
 				// Get the previous node text
 				let prevText = prevNode.textContent;
@@ -131,7 +166,7 @@ class Detector {
 				}
 			}
 		}
-		return word;
+		return words;
 	}
 
 	// invalid character checker

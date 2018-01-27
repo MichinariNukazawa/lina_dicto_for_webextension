@@ -28,7 +28,9 @@ let dictionary = new Dictionary();
 	window.addEventListener( 'load', function(e){
 		document.addEventListener('mousemove', function(e) {
 			let info = detector.get_full_word_ex(e);
-			let show_info = Linad.get_show_info_from_keyword(dictionary, info.word);
+			console.log(`##${info.word}##${info.next_word}##`);
+			let show_info = Linad.get_show_info_from_keyword(
+					dictionary, info.word, info.next_word);
 			hover.show(info.x, info.y, show_info);
 		}, false);
 	}, false);
