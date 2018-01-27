@@ -63,90 +63,41 @@ class Hover{
 		return '' + value + 'px';
 	}
 
-	/** @brief スペル修正候補を返す */
-	get_candidate_word_from_keyword(keyword)
-	{
-		const candidates = Esperanto.get_candidates(keyword);
-		for(const candidate of candidates){
-			let index = dictionary.get_index_from_incremental_keyword(candidate);
-			let item = dictionary.get_item_from_index(index);
-			if(item){
-				return item;
-			}
+	show(x, y, show_info){
+		this.state.result_root_element.style["display"] = "inline-block";
+		this.state.result_root_element.style["left"] = this.get_px_str(x + 10);
+		this.state.result_root_element.style["top"] = this.get_px_str(y + 30);
+
+		//! easy check only show_word
+		if(show_info.show_keyword === this.state.prev_word){
+			return;
 		}
+		this.state.prev_word = show_info.show_keyword;
 
-		return null;
-	}
-
-	get_show_info_from_keyword(keyword){
-		let show_info = {
-			'show_keyword':keyword,
-			'explanation_text':'',
-			'candidate_word':''
-		};
-
-		if(20 < keyword.length){
-			show_info.show_word = keyword.substr(0, 10) + "~";
-		}else if(! Esperanto.is_esperanto_string(keyword)){
-			show_info.explanation_text = keyword;
+		if(0 !== show_info.explanation_text.length){
+			this.state.result_root_element
+				.style["border-width"] = "3px";
+			this.state.explanation_element
+				.style["display"] = "block";
+			this.state.explanation_element
+				.textContent = show_info.explanation_text;
 		}else{
-			let k_word = Esperanto.caret_sistemo_from_str(keyword);
-			let item = dictionary.get_item_from_keyword(k_word);
-			if(null === item){
-				item = this.get_candidate_word_from_keyword(k_word);
-				if(null !== item){
-					show_info.candidate_word = dictionary.get_show_word_from_item(item);
-				}
-			}
-			show_info.explanation_text = dictionary.get_explanation_from_item(item);
+			this.state.result_root_element
+				.style["border-width"] = "1.5px";
+			this.state.explanation_element
+				.style["display"] = "none";
 		}
 
-		return show_info;
-	}
-
-	show(x, y, word){
-		// console.debug(word + " :" + x + "," + y);
-
-		if (word == "") {
-			this.hidden();
+		let show_word = '`' + show_info.show_keyword + '`';
+		if(0 === show_info.candidate_word.length){
+			this.state.result_root_element
+				.style["border-color"] = this.HoverProperty.getRootBorderMatchedColor();
 		}else{
-			this.state.result_root_element.style["display"] = "inline-block";
-			this.state.result_root_element.style["left"] = this.get_px_str(x + 10);
-			this.state.result_root_element.style["top"] = this.get_px_str(y + 30);
-			//console.debug(word + " :" + x + "," + y);
-
-			if(word === this.state.prev_word){
-				return;
-			}
-			this.state.prev_word = word;
-
-			let show_info = this.get_show_info_from_keyword(word);
-
-			if(0 !== show_info.explanation_text.length){
-				this.state.result_root_element
-					.style["border-width"] = "3px";
-				this.state.explanation_element
-					.style["display"] = "block";
-				this.state.explanation_element
-					.textContent = show_info.explanation_text;
-			}else{
-				this.state.result_root_element
-					.style["border-width"] = "1.5px";
-				this.state.explanation_element
-					.style["display"] = "none";
-			}
-
-			let show_word = '`' + show_info.show_keyword + '`';
-			if(0 === show_info.candidate_word.length){
-				this.state.result_root_element
-					.style["border-color"] = this.HoverProperty.getRootBorderMatchedColor();
-			}else{
-				this.state.result_root_element
-					.style["border-color"] = this.HoverProperty.getRootBorderCandidateColor();
-				show_word += ' -> `' + show_info.candidate_word + '`';
-			}
-			this.state.word_element.textContent = show_word;
+			this.state.result_root_element
+				.style["border-color"] = this.HoverProperty.getRootBorderCandidateColor();
+			show_word += ' -> `' + show_info.candidate_word + '`';
 		}
+		this.state.word_element.textContent = show_word;
 	}
 };
 

@@ -41,6 +41,7 @@
 				"js/detector.js",
 				"js/hover_property.js",
 				"js/hover.js",
+				"js/linad.js",
 				"content_script.js"
 			],
 			"run_at": "document_end",

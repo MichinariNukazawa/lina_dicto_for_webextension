@@ -4,9 +4,16 @@ let hover = new Hover(HoverProperty);
 let detector = new Detector();
 let dictionary = new Dictionary();
 
+
 function callback(e){
 	let info = detector.get_full_word_ex(e);
-	hover.show(info.x, info.y, info.word);
+	if(0 === info.word.length){
+		this.hidden();
+		return;
+	}
+
+	let show_info = Linad.get_show_info_from_keyword(dictionary, info.word);
+	hover.show(info.x, info.y, show_info);
 }
 
 window.addEventListener( 'load', function(e){
