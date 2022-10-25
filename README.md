@@ -37,7 +37,7 @@ Exclude dictionary data.(辞書ファイルは辞書ファイル毎のライセ�
 Chromeの開発もリリースで生成されるディレクトリで行います。  
 
 ## Test
-拡張をインストールしなくても動作する[テストページ](http://michinarinukazawa.github.io/lina_dicto_for_webextension/test/index.html)で、翻訳表示を試すことができます。  
+拡張をインストールしなくても動作するテストページ `test/index.html` で、翻訳表示を試すことができます。  
   
 # Contact
 mail: [michinari.nukazawa@gmail.com][mailto]  
