@@ -16,7 +16,7 @@ FireFox,Chromeに対応しています。
 - zipファイルを[Download][Download]する。  
 - FireFoxの拡張機能から「一時的なアドオンを読み込む」でダウンロードしたzipファイルを指定する。  
 ## Chrome
-Chromeエクステンションとして公開予定。  
+[Chrome Web Store][chrome]  
 または、  
 - zipファイルを[Download][Download]する。  
 - zipファイルを解凍。  
@@ -46,6 +46,7 @@ twitter: [@MNukazawa][twitter]
 Develop by Michinari.Nukazawa, in project "[daisy bell][pixiv_booth_project_daisy_bell]".  
   
 [firefox]: https://addons.mozilla.org/ja/firefox/addon/lina_dicto_for_webextension/
+[chrome]: https://chrome.google.com/webstore/detail/linadicto-for-webextensio/boapdbolcedaalcegcfnnbdcolilggnc
 [download]: https://github.com/MichinariNukazawa/lina_dicto_for_webextension/releases
 [pixiv_booth_project_daisy_bell]: https://daisy-bell.booth.pm/
 [mailto]: mailto:michinari.nukazawa@gmail.com
