@@ -17,7 +17,7 @@ class Linad{
 	
 	static get_show_info_from_keyword(dictionary, keyword, next_keyword){
 		let show_info = {
-			'show_keyword':keyword,
+			'show_keyword': keyword,
 			'explanation_text':'',
 			'candidate_word':''
 		};

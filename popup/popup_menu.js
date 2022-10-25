@@ -31,26 +31,51 @@ function showAmrilatoPairBirthdayMessage(){
 window.addEventListener( 'load', function(e){
 	showAmrilatoPairBirthdayMessage();
 
-	let checkbox_element = document.getElementById('ld_is_enabled');
+	let license_area_checkbox_element = document.getElementById('ld_is_license_area');
+	license_area_checkbox_element.addEventListener('change', function(e) {
+		let checked = license_area_checkbox_element.checked
+		console.debug("license_area_change:" + checked)
 
-	var page = browser.extension.getBackgroundPage();
-	checkbox_element.checked = page.get_is_enabled_current_tab();
+		let license_area_element = document.getElementById('license_area');
+		license_area_element.style.display = (checked)? "block":"none"
+	});
+
+
+	let checkbox_element = document.getElementById('ld_is_enabled');
 
 	checkbox_element.addEventListener('change', function(e) {
 		console.debug("change");
 
-		page.set_is_enabled_current_tab(checkbox_element.checked);
+		chrome.runtime.sendMessage({
+			'ldMessageTarget': 'service_worker',
+			'ldMessageKind': 'enable_translate',
+			'enableTanslate': checkbox_element.checked
+		})
 	});
 
-	let license_area_checkbox_element = document.getElementById('ld_is_license_area');
-	let license_area_element = document.getElementById('license_area');
-	license_area_checkbox_element.addEventListener('change', function(e) {
-		let checked = (license_area_checkbox_element.checked)? "block":"none";
-		console.debug("license_area_change:" + checked);
+	// ** TabState
+	chrome.runtime.onMessage.addListener((request) => {
+		if('popup' !== request.ldMessageTarget){
+			console.log('through receive message not target.', request.ldMessageTarget)
+			return
+		}
 
-		license_area_element.style.display = checked;
-	});
+		const tabState = request.tabState
+		console.log('received tabState', tabState)
 
+		// 設定値をUIに反映
+		document.getElementById('ld_is_enabled').checked = tabState.enable
 
+		// ** 読み込み成功したのでUIのロックを解除
+		document.getElementById('loading_message').style.display ="none"
+		let inputs = document.getElementsByTagName('input')
+		for( let i = 0; i < inputs.length; i++){
+			inputs[i].disabled = ''
+		}
+	})
+	chrome.runtime.sendMessage({
+		 'ldMessageTarget': 'service_worker',
+		 'ldMessageKind': 'tab_state'
+	})
 }, false);
 

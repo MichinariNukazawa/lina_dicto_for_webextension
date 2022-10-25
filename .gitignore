@@ -59,5 +59,9 @@ lina_dicto/
 
 webextension-polyfill/
 
+#
+output*
 *.zip
+
+
 

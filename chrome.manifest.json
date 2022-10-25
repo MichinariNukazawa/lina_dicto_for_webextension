@@ -1,5 +1,5 @@
 {
-	"manifest_version": 2,
+	"manifest_version": 3,
 	"name": "lina_dicto for webextension",
 	"version": "1.0.6",
 
@@ -12,18 +12,14 @@
 		"96": "icon/icon_96.png"
 	},
 
-	"browser_action": {
+	"action": {
 		"default_title": "lina_dicto for webextension",
 		"default_icon": "icon/icon_128.png",
 		"default_popup": "popup/popup_menu.html"
 	},
 
 	"background": {
-		"scripts": [
-			"js/browser-polyfill.js",
-			"background.js"
-		],
-		"persistent": false
+		"service_worker": "background.js"
 	},
 
 	"permissions": [

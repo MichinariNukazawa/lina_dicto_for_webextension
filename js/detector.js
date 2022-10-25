@@ -77,6 +77,10 @@ class Detector {
 			// REF: https://developer.mozilla.org/en-US/docs/Web/API/document/caretRangeFromPoint
 		} else if (document.caretRangeFromPoint) {
 			range = document.caretRangeFromPoint(event.clientX, event.clientY);
+			if(range === null){
+				console.error('range missing Node');
+				return words;
+			}
 			textNode = range.startContainer;
 			offset = range.startOffset;
 		}
