@@ -28,8 +28,6 @@
 
 	"permissions": [
 		"activeTab",
-		"notifications",
-		"storage",
 		"scripting"
 	]
 }
