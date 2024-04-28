@@ -22,6 +22,10 @@ FireFox,Chromeに対応しています。
 - zipファイルを解凍。  
 - Chromeの拡張機能から「パッケージ化されていない拡張機能を読み込む」で解凍したディレクトリを指定する。  
 
+# 辞書データについて
+外部の辞書データを改変し収録させて頂きました。感謝いたします。  
+[lina\_dicto](https://github.com/MichinariNukazawa/lina_dicto) の「辞書データについて」参照  
+
   
 ## その他のバージョン
 [lina\_dicto (for Win/MacOSX/Linux)](https://github.com/MichinariNukazawa/lina_dicto)  
@@ -33,12 +37,9 @@ Exclude dictionary data.(辞書ファイルは辞書ファイル毎のライセ�
   
 # 開発に参加する
 ## Build
-リリース： `make`  
+リリース： `npm run release`  
 Chromeの開発もリリースで生成されるディレクトリで行います。  
 
-## Test
-拡張をインストールしなくても動作するテストページ `test/index.html` で、翻訳表示を試すことができます。  
-  
 # Contact
 mail: [michinari.nukazawa@gmail.com][mailto]  
 twitter: [@MNukazawa][twitter]  
